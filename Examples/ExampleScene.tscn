@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://curl6xi6u8qwc"]
+
+[ext_resource type="Script" path="res://Examples/ExampleScene.gd" id="1_5x7ul"]
+[ext_resource type="PackedScene" uid="uid://cwnc8cwsiwtvh" path="res://Timeline.tscn" id="2_uainb"]
+[ext_resource type="PackedScene" uid="uid://cxsegb12mei5a" path="res://Examples/Player.tscn" id="3_g3vjm"]
+
+[node name="ExampleScene" type="Node"]
+script = ExtResource("1_5x7ul")
+
+[node name="Timeline" parent="." instance=ExtResource("2_uainb")]
+
+[node name="Player" parent="." instance=ExtResource("3_g3vjm")]
+position = Vector2(32, 32)

@@ -5,6 +5,5 @@
 [node name="Command" type="Node2D"]
 position = Vector2(-1, 0)
 script = ExtResource("1_1l3sp")
-icon_size = Vector2(50, 50)
 
 [node name="IconSprite" type="Sprite2D" parent="."]

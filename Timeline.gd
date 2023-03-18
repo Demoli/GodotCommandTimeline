@@ -10,7 +10,7 @@ enum CommandAlign{LEFT,RIGHT,CENTER}
 
 @export var playing: bool = false
 
-@export var commands: Array[Command] = []
+@export var commands: Array = []
 
 #@export var command_alignment = CommandAlign.CENTER
 
@@ -52,13 +52,14 @@ func _process_commands():
 	var runnable = commands.filter(
 		func(command): 
 			var time = snapped(tick, command_step)
-			if command.time == time:
+			if command.time == time and not command.has_run:
 				return true
 	)
 	
 	if runnable.size():
 		for c in runnable:
 			c.run()
+			c.has_run = true
 
 func play():
 	playing = true

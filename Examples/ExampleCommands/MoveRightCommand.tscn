@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://huaugjaqnkro"]
+
+[ext_resource type="PackedScene" uid="uid://c00x3k6p115ul" path="res://Command.tscn" id="1_menxw"]
+[ext_resource type="Script" path="res://Examples/ExampleCommands/MoveRightCommand.gd" id="2_6ymqa"]
+
+[node name="MoveRightCommand" instance=ExtResource("1_menxw")]
+script = ExtResource("2_6ymqa")
