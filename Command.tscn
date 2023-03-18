@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c00x3k6p115ul"]
+
+[ext_resource type="Script" path="res://Command.gd" id="1_1l3sp"]
+
+[node name="Command" type="Node2D"]
+position = Vector2(-1, 0)
+script = ExtResource("1_1l3sp")
+icon_size = Vector2(50, 50)
+
+[node name="IconSprite" type="Sprite2D" parent="."]

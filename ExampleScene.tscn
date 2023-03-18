@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8rwttlky85jb"]
+
+[ext_resource type="PackedScene" uid="uid://cwnc8cwsiwtvh" path="res://Timeline.tscn" id="1_swcrf"]
+
+[node name="ExampleScene" type="Node"]
+
+[node name="Timeline" parent="." instance=ExtResource("1_swcrf")]
