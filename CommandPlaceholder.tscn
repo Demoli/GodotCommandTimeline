@@ -7,7 +7,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ukhkb"]
 size = Vector2(20, 20)
 
-[node name="CommandPlaceholder" type="Area2D"]
+[node name="CommandPlaceholder" type="Area2D" groups=["command_placeholder"]]
 script = ExtResource("1_r3fpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

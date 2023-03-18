@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8rwttlky85jb"]
+[gd_scene load_steps=3 format=3 uid="uid://c8rwttlky85jb"]
 
+[ext_resource type="Script" path="res://ExampleScene.gd" id="1_pwkbd"]
 [ext_resource type="PackedScene" uid="uid://cwnc8cwsiwtvh" path="res://Timeline.tscn" id="1_swcrf"]
 
 [node name="ExampleScene" type="Node"]
+script = ExtResource("1_pwkbd")
 
 [node name="Timeline" parent="." instance=ExtResource("1_swcrf")]

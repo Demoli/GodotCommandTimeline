@@ -1,11 +1,13 @@
-class_name CommandPlaceholder
-extends Area2D
+extends Node
 
-@export var time_position := 0.0
+
+@onready var command = load("res://Command.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var new = command.instantiate()
+	new.time = 1
+	$Timeline.add_command(new)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

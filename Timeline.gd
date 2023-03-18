@@ -29,8 +29,6 @@ var time_start: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	time_start = Time.get_unix_time_from_system()
-
 	$ProgressBar.value = 0
 	$ProgressBar.max_value = max_time
 	
@@ -53,9 +51,14 @@ func _process(delta):
 func _process_commands():
 	var runnable = commands.filter(
 		func(command): 
-			if command.time == tick:
-				command.run()
+			var time = snapped(tick, command_step)
+			if command.time == time:
+				return true
 	)
+	
+	if runnable.size():
+		for c in runnable:
+			c.run()
 
 func play():
 	playing = true
@@ -74,8 +77,19 @@ func get_running_time():
 	
 	return time_elapsed
 
-func _init_placeholders():
+func add_command(command: Command):
+	commands.append(command)
+	command.position = get_command_snap_position(command)
+	add_child(command)
 	
+func get_command_snap_position(command: Command):
+	return get_tree().get_nodes_in_group("command_placeholder").filter(
+		func(place: CommandPlaceholder):
+			return place.time_position == command.time
+	).pop_front().position
+	
+
+func _init_placeholders():
 	var width = get_rect().size.x
 	var x_per_tick = width / max_time
 	var command_offset = (command_step / tick_speed)
