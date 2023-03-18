@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwnc8cwsiwtvh"]
+
+[ext_resource type="Texture2D" uid="uid://e8be035x6s4y" path="res://assets/timeline_bg_odd.png" id="1_8m50t"]
+[ext_resource type="Script" path="res://Timeline.gd" id="1_r818e"]
+[ext_resource type="Texture2D" uid="uid://b4y7ysuxeo80y" path="res://assets/timeline_bg_even.png" id="2_ycr0v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kifi3"]
+texture = ExtResource("1_8m50t")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d6cim"]
+texture = ExtResource("2_ycr0v")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="Gradient" id="Gradient_7lceu"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.192157, 0.423529, 1, 0.196078)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8ei11"]
+gradient = SubResource("Gradient_7lceu")
+
+[node name="Timeline" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r818e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="OddTrack" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kifi3")
+
+[node name="Grid" type="GridContainer" parent="VBoxContainer/OddTrack"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+columns = 12
+
+[node name="EvenTrack" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_d6cim")
+
+[node name="Grid" type="GridContainer" parent="VBoxContainer/EvenTrack"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+columns = 12
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 5.0
+step = 0.0
+value = 1.0
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_8ei11")
