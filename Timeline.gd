@@ -87,4 +87,4 @@ func _init_placeholders():
 		var new_place = placeholder.instantiate()
 		new_place.position = command_pos
 		new_place.time_position = (time * command_step)
-		add_child(new_place)
+		$Tracks/Track.add_child(new_place)
