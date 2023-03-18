@@ -13,8 +13,12 @@ extends Node2D
 @export var has_run := false
 
 func _ready():
+	add_to_group("timeline_command")
 	$IconSprite.texture = icon_texture
 	$IconSprite.texture.size = icon_size
 
 func run(args: Array = []):
 	pass
+	
+func reset():
+	has_run = false

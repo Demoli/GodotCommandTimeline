@@ -71,6 +71,7 @@ func stop():
 	playing = false
 	$ProgressBar.value = 0
 	tick = 0
+	get_tree().call_group("timeline_command", "reset")
 
 func get_running_time():
 	var time_now = Time.get_unix_time_from_system()
