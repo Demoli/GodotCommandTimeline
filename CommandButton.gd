@@ -8,14 +8,11 @@ var placeholder_area: Area2D
 func _ready():
 	command = load("res://Examples/ExampleCommands/MoveRightCommand.tscn")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not draggable:
 		return
 	
 	global_position = get_global_mouse_position() - get_rect().size / 2
-	
-#	if placeholder_area:
-#		global_position = global_position.snapped(placeholder_area.position)
 
 func _on_pressed():
 	var new = duplicate()

@@ -1,6 +1,12 @@
 class_name Timeline
 extends Control
 
+## Timeline node
+##
+## A timeline control that can accept be played, paused and reset.
+## Command objects can be added to the timeline and will execute when the timeline reaches that time.[br]
+##
+
 enum CommandAlign{LEFT,RIGHT,CENTER}
 
 ## Tick speed in seconds
@@ -13,14 +19,12 @@ enum CommandAlign{LEFT,RIGHT,CENTER}
 
 @export var commands: Array = []
 
-#@export var command_alignment = CommandAlign.CENTER
-
 ## How many commands can be executed in 1 tick
 ## e.g. a tick of 1 and step of 1 will execute the first command at 1 second, the next at 2 seconds
 ## a tick of 1 and a step of 2 will execute the first command at 0.5 seconds, the next at 1 second, and so on
 @export var command_step: float = .5
 
-## If treu you can place a command at zero seconds, then the rest willow follow the command step
+## If true you can place a command at zero seconds, then the rest willow follow the command step
 @export var allow_command_at_zero := true
 
 @onready var placeholder = load("res://CommandPlaceholder.tscn")
