@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://du0mh3cvhvdo7"]
+
+[ext_resource type="Script" path="res://CommandPalette.gd" id="1_gj4g2"]
+[ext_resource type="PackedScene" uid="uid://qfwd3ko0gg5v" path="res://CommandButton.tscn" id="2_uq47p"]
+
+[node name="CommandPalette" type="MarginContainer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -124.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_gj4g2")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="TextureButton" parent="GridContainer" instance=ExtResource("2_uq47p")]
+layout_mode = 2

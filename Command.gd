@@ -4,9 +4,6 @@ extends Node2D
 ## Icon texture
 @export var icon_texture: Texture2D = PlaceholderTexture2D.new()
 
-## The icon size in pixels
-@export var icon_size: Vector2 = Vector2(32,32)
-
 ## The time this command will run on the timeline
 @export var time: float
 
@@ -15,7 +12,8 @@ extends Node2D
 func _ready():
 	add_to_group("timeline_command")
 	$IconSprite.texture = icon_texture
-	$IconSprite.texture.size = icon_size
+	if icon_texture is PlaceholderTexture2D:
+		$IconSprite.texture.size = Vector2(32,32)
 
 func run(args: Array = []):
 	pass

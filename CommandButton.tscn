@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://qfwd3ko0gg5v"]
+
+[ext_resource type="Texture2D" uid="uid://bq4kyp3tt5rs6" path="res://assets/arrowRight.png" id="1_jdqm5"]
+[ext_resource type="Script" path="res://CommandButton.gd" id="2_u747h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cckxp"]
+size = Vector2(32, 32)
+
+[node name="CommandButton" type="TextureButton"]
+offset_right = 50.0
+offset_bottom = 50.0
+size_flags_horizontal = 0
+button_mask = 3
+texture_normal = ExtResource("1_jdqm5")
+script = ExtResource("2_u747h")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(24, 24)
+shape = SubResource("RectangleShape2D_cckxp")
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

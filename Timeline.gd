@@ -1,3 +1,4 @@
+class_name Timeline
 extends Control
 
 enum CommandAlign{LEFT,RIGHT,CENTER}
