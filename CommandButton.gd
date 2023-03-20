@@ -5,10 +5,11 @@ extends TextureButton
 @export var command: PackedScene
 
 func _get_configuration_warnings():
-	pass
+	if not command:
+		return ["This node needs a Command node to instantiate on press, please set a PackedScene on the Command property"]
 
 func _ready():
-	command = load("res://Examples/ExampleCommands/MoveRightCommand.tscn")
+	connect("pressed", Callable(self, "_on_pressed"))
 
 func _on_pressed():
 	var new = command.instantiate() as Command
