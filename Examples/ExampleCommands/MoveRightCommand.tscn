@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://huaugjaqnkro"]
+[gd_scene load_steps=4 format=3 uid="uid://bs6jq35w8ckrk"]
 
-[ext_resource type="PackedScene" uid="uid://c00x3k6p115ul" path="res://Command.tscn" id="1_menxw"]
 [ext_resource type="Script" path="res://Examples/ExampleCommands/MoveRightCommand.gd" id="2_6ymqa"]
 [ext_resource type="Texture2D" uid="uid://bq4kyp3tt5rs6" path="res://assets/arrowRight.png" id="3_grnut"]
 
-[node name="MoveRightCommand" instance=ExtResource("1_menxw")]
-script = ExtResource("2_6ymqa")
-icon_texture = ExtResource("3_grnut")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0dv8"]
+size = Vector2(32, 32)
 
-[node name="IconSprite" parent="." index="0"]
+[node name="MoveRightCommand" type="Area2D"]
+script = ExtResource("2_6ymqa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_grnut")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g0dv8")

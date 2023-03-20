@@ -1,8 +1,9 @@
-extends "res://Command.gd"
+extends Command
 
 @export var move_target: Node2D
 
 func _ready():
+	super()
 	move_target = get_tree().root.get_node("/root/ExampleScene/Player")
 
 func run(_args: Array = []):
@@ -13,3 +14,5 @@ func run(_args: Array = []):
 		move_target.position + Vector2.RIGHT * 64,
 		.5
 	)
+
+
