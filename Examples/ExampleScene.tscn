@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Examples/ExampleScene.gd" id="1_5x7ul"]
 [ext_resource type="PackedScene" uid="uid://cwnc8cwsiwtvh" path="res://Timeline.tscn" id="2_uainb"]
 [ext_resource type="PackedScene" uid="uid://cxsegb12mei5a" path="res://Examples/Player.tscn" id="3_g3vjm"]
-[ext_resource type="PackedScene" uid="uid://du0mh3cvhvdo7" path="res://CommandPalette.tscn" id="4_vo6p8"]
+[ext_resource type="Script" path="res://CommandPalette.gd" id="4_gh1r4"]
 [ext_resource type="Texture2D" uid="uid://bq4kyp3tt5rs6" path="res://assets/arrowRight.png" id="5_xohvt"]
 [ext_resource type="PackedScene" uid="uid://bs6jq35w8ckrk" path="res://Examples/ExampleCommands/MoveRightCommand.tscn" id="6_3rr5h"]
 [ext_resource type="Script" path="res://CommandButton.gd" id="6_ii0gm"]
@@ -16,17 +16,14 @@ script = ExtResource("1_5x7ul")
 [node name="Player" parent="." instance=ExtResource("3_g3vjm")]
 position = Vector2(32, 32)
 
-[node name="CommandPalette" parent="." instance=ExtResource("4_vo6p8")]
-anchors_preset = 11
+[node name="CommandPalette" type="GridContainer" parent="."]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = -50.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+offset_bottom = 50.0
 grow_horizontal = 0
-grow_vertical = 2
+script = ExtResource("4_gh1r4")
 
 [node name="CommandButton" type="TextureButton" parent="CommandPalette"]
 layout_mode = 2
