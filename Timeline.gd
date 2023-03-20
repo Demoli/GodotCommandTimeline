@@ -1,5 +1,5 @@
 class_name Timeline
-extends Control
+extends Area2D
 
 ## Timeline node
 ##
@@ -19,15 +19,17 @@ enum CommandAlign{LEFT,RIGHT,CENTER}
 
 @export var commands: Array = []
 
-## How many commands can be executed in 1 tick
-## e.g. a tick of 1 and step of 1 will execute the first command at 1 second, the next at 2 seconds
-## a tick of 1 and a step of 2 will execute the first command at 0.5 seconds, the next at 1 second, and so on
+## How many commands can be executed in 1 tick.[br]
+##e.g. a tick of 1 and step of 1 will execute the first command at 1 second, the next at 2 seconds.[br]
+##A tick of 1 and a step of 2 will execute the first command at 0.5 seconds, the next at 1 second, and so on
 @export var command_step: float = .5
 
 ## If true you can place a command at zero seconds, then the rest willow follow the command step
 @export var allow_command_at_zero := true
 
 @export var placeholder: PackedScene
+
+@onready var progress_bar = get_node("CanvasLayer/MarginContainer/ProgressBar")
 
 var tick: float = 0.0
 var time_start: float
@@ -38,8 +40,8 @@ func _get_configuration_warnings():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$ProgressBar.value = 0
-	$ProgressBar.max_value = max_time
+	progress_bar.value = 0
+	progress_bar.max_value = max_time
 	
 	_init_placeholders()
 
@@ -53,7 +55,7 @@ func _unhandled_key_input(event):
 func _process(delta):
 	if playing:
 		tick += tick_speed * delta
-		$ProgressBar.value = tick
+		progress_bar.value = tick
 		
 		_process_commands()
 
@@ -78,7 +80,7 @@ func pause():
 	
 func stop():
 	playing = false
-	$ProgressBar.value = 0
+	progress_bar.value = 0
 	tick = 0
 	get_tree().call_group("timeline_command", "reset")
 
@@ -101,7 +103,7 @@ func get_command_snap_position(command: Command):
 	
 
 func _init_placeholders():
-	var width = get_rect().size.x
+	var width = $CollisionShape2D.shape.get_rect().size.x
 	var x_per_tick = width / max_time
 	var command_offset = (command_step / tick_speed)
 	
@@ -112,4 +114,4 @@ func _init_placeholders():
 		var new_place = placeholder.instantiate()
 		new_place.position = command_pos
 		new_place.time_position = (time * command_step)
-		$Tracks/Track.add_child(new_place)
+		add_child(new_place)

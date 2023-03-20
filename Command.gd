@@ -41,12 +41,11 @@ func _on_area_2d_area_exited(area):
 	if area is CommandPlaceholder:
 		placeholder_area = null
 
-func place_command(area: CommandPlaceholder):
+func place_command(area: Area2D):
 	get_parent().remove_child(self)
 	
 	time = area.time_position
-	var timeline: Timeline = area.get_parent().get_owner()
-	
+	var timeline: Timeline = area.get_parent()
 	timeline.add_command(self)
 	draggable = false
 	
