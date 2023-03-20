@@ -27,10 +27,14 @@ enum CommandAlign{LEFT,RIGHT,CENTER}
 ## If true you can place a command at zero seconds, then the rest willow follow the command step
 @export var allow_command_at_zero := true
 
-@onready var placeholder = load("res://CommandPlaceholder.tscn")
+@export var placeholder: PackedScene
 
 var tick: float = 0.0
 var time_start: float
+
+func _get_configuration_warnings():
+	if not placeholder:
+		return ["A timline needs a CommandPlaceholder node, this is used to position commands"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
