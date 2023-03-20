@@ -1,4 +1,4 @@
-extends MarginContainer
+extends GridContainer
 
 func add_command_button(button: CommandButton):
-	$GridContainer.add_child(button)
+	add_child(button)
