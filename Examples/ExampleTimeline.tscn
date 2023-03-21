@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://di0kmshcqmtlg"]
+[gd_scene load_steps=5 format=3 uid="uid://di0kmshcqmtlg"]
 
-[ext_resource type="Script" path="res://Timeline.gd" id="1_3qd8m"]
-[ext_resource type="PackedScene" uid="uid://drgkf8xq2k8c1" path="res://Examples/ExampleCommandPlaceholder.tscn" id="3_ivy8o"]
+[ext_resource type="Script" path="res://addons/commandtimeline/Timeline.gd" id="1_7xjt8"]
 [ext_resource type="Texture2D" uid="uid://bu5avu5wodk54" path="res://assets/player_face.png" id="3_jiak5"]
 [ext_resource type="Texture2D" uid="uid://drvk1kcl8d24" path="res://assets/player_face_red.png" id="4_df8hi"]
 
@@ -11,8 +10,7 @@ size = Vector2(1052, 100)
 [node name="Timeline" type="Area2D"]
 monitoring = false
 monitorable = false
-script = ExtResource("1_3qd8m")
-placeholder = ExtResource("3_ivy8o")
+script = ExtResource("1_7xjt8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
