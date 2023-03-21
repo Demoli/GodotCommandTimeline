@@ -14,7 +14,7 @@ extends Area2D
 
 @export var draggable := false
 
-## The timeline track index to add the command to
+## The timeline track index to add the command to (0 indexed)
 @export var track := 0
 
 var placeholder_area: Area2D
@@ -34,6 +34,7 @@ func _input(event):
 	if draggable and event.is_action_released("drop_command"):
 		queue_free()
 	if draggable and placeholder_area and event.is_action_released("place_command"):
+		track = placeholder_area.track
 		place_command(placeholder_area)
 
 func _on_area_2d_area_entered(area):

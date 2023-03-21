@@ -13,7 +13,7 @@ func _ready():
 	new.time = 1.0
 	$Timeline.add_command(new)
 	
-	new = move_right_com.instantiate()
-	new.time = 3
-	new.track = 1
-	$Timeline.add_command(new)
+#	new = move_right_com.instantiate()
+#	new.time = 3
+#	new.track = 1
+#	$Timeline.add_command(new)

@@ -16,21 +16,7 @@ enum CommandAlign{LEFT,RIGHT,CENTER}
 @export var max_time: float = 12.00
 
 @export var playing: bool = false
-
-class Track:
-	var _name: String
-	var _icon: Texture2D
-
-	func _init(name, icon):
-		_name = name
-		_icon = icon
-
-@export var tracks: Array = [
-	Track.new("player", PlaceholderTexture2D.new())
-]
-
-@export var commands: Array = []
-
+		
 ## How many commands can be executed in 1 tick.[br]
 ##e.g. a tick of 1 and step of 1 will execute the first command at 1 second, the next at 2 seconds.[br]
 ##A tick of 1 and a step of 2 will execute the first command at 0.5 seconds, the next at 1 second, and so on
@@ -43,6 +29,7 @@ class Track:
 
 @onready var progress_bar = get_node("CanvasLayer/MarginContainer/ProgressBar")
 
+var commands: Array = []
 var tick: float = 0.0
 var time_start: float
 
@@ -103,9 +90,6 @@ func get_running_time():
 	
 	return time_elapsed
 
-func add_track(track):
-	tracks.append(track)
-
 func add_command(command: Command):
 	commands.append(command)
 	var place = get_command_placeholder(command)
@@ -115,7 +99,9 @@ func add_command(command: Command):
 func get_command_placeholder(command: Command):
 	return $Tracks.get_child(command.track).get_children().filter(
 		func(place):
-			return place.time_position == command.time
+			if place is CommandPlaceholder:
+				return place.time_position == command.time
+			return false
 	).pop_front()
 
 func _init_placeholders():
@@ -125,20 +111,14 @@ func _init_placeholders():
 	
 	var start = 0 if allow_command_at_zero else 1
 	
+	var track_index = 0
 	for track in $Tracks.get_children():
-		for time in range(start, (max_time / command_step) + 1):
+		for time in range(start, (max_time / command_step) +1):
 			var command_pos = Vector2((x_per_tick * time) * command_offset, 25)
 			var new_place = placeholder.instantiate()
 			new_place.position = command_pos
 			new_place.time_position = (time * command_step)
+			new_place.track = track_index
 			track.add_child(new_place)
-
-func _draw_tracks():
-	return
-	var y = 0
-	for t in tracks:
-		var new = Area2D.new()
-		new.name = "Track"
-		new.position = Vector2(0, y)
-		$Tracks.add_child(new)
-		y += 50
+		
+		track_index += 1
