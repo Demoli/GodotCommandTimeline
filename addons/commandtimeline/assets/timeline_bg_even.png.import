@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq4kyp3tt5rs6"
-path="res://.godot/imported/arrowRight.png-3e46e93b71c6499cf9603ddc65a6a1cc.ctex"
+uid="uid://b4y7ysuxeo80y"
+path="res://.godot/imported/timeline_bg_even.png-d5bcac1347e0f118e00df4769cbbb1e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/arrowRight.png"
-dest_files=["res://.godot/imported/arrowRight.png-3e46e93b71c6499cf9603ddc65a6a1cc.ctex"]
+source_file="res://addons/commandtimeline/assets/timeline_bg_even.png"
+dest_files=["res://.godot/imported/timeline_bg_even.png-d5bcac1347e0f118e00df4769cbbb1e0.ctex"]
 
 [params]
 

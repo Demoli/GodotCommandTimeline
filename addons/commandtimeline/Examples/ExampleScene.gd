@@ -1,6 +1,6 @@
 extends Node
 
-@onready var move_right_com = load("res://Examples/ExampleCommands/MoveRightCommand.tscn")
+@onready var move_right_com = load("res://addons/commandtimeline/Examples/ExampleCommands/MoveRightCommand.tscn")
 
 func _ready():
 	var new = move_right_com.instantiate()
