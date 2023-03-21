@@ -13,8 +13,10 @@ script = ExtResource("1_3qd8m")
 placeholder = ExtResource("3_ivy8o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(576, 50)
 shape = SubResource("RectangleShape2D_bca6i")
+disabled = true
 
 [node name="Tracks" type="Node2D" parent="."]
 position = Vector2(50, 0)

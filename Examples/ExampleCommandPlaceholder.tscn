@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://drgkf8xq2k8c1"]
+[gd_scene load_steps=4 format=3 uid="uid://drgkf8xq2k8c1"]
 
 [ext_resource type="Script" path="res://CommandPlaceholder.gd" id="1_i2ilx"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c48ks"]
+size = Vector2(10, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2bj5"]
 
@@ -8,6 +11,7 @@
 script = ExtResource("1_i2ilx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_c48ks")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_u2bj5")
