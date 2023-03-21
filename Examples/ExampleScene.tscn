@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0wef42t8ifuc"]
+[gd_scene load_steps=9 format=3 uid="uid://b0wef42t8ifuc"]
 
 [ext_resource type="Script" path="res://Examples/ExampleScene.gd" id="1_5x7ul"]
 [ext_resource type="PackedScene" uid="uid://di0kmshcqmtlg" path="res://Examples/ExampleTimeline.tscn" id="2_uainb"]
@@ -7,12 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://bq4kyp3tt5rs6" path="res://assets/arrowRight.png" id="5_xohvt"]
 [ext_resource type="PackedScene" uid="uid://bs6jq35w8ckrk" path="res://Examples/ExampleCommands/MoveRightCommand.tscn" id="6_3rr5h"]
 [ext_resource type="Script" path="res://CommandButton.gd" id="6_ii0gm"]
+[ext_resource type="PackedScene" uid="uid://jehqo2ab73ry" path="res://Examples/PlayerRed.tscn" id="8_73vgn"]
 
 [node name="ExampleScene" type="Node"]
 script = ExtResource("1_5x7ul")
 
 [node name="Player" parent="." instance=ExtResource("3_g3vjm")]
 position = Vector2(32, 32)
+
+[node name="PlayerRed" parent="." instance=ExtResource("8_73vgn")]
+position = Vector2(32, 96)
 
 [node name="CommandPalette" type="GridContainer" parent="."]
 anchors_preset = 11
@@ -32,3 +36,10 @@ command = ExtResource("6_3rr5h")
 
 [node name="Timeline" parent="." instance=ExtResource("2_uainb")]
 position = Vector2(0, 548)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="MoveRightCommand" parent="Node" instance=ExtResource("6_3rr5h")]
+visible = false
+
+[connection signal="command_added" from="Timeline" to="." method="_on_timeline_command_added"]

@@ -7,7 +7,7 @@ extends Area2D
 ## Command objects can be added to the timeline and will execute when the timeline reaches that time.[br]
 ##
 
-enum CommandAlign{LEFT,RIGHT,CENTER}
+signal command_added
 
 ## Tick speed in seconds
 @export var tick_speed: float = 1
@@ -95,6 +95,8 @@ func add_command(command: Command):
 	var place = get_command_placeholder(command)
 	command.position = place.position
 	place.get_parent().add_child(command)
+	
+	emit_signal("command_added", command)
 	
 func get_command_placeholder(command: Command):
 	return $Tracks.get_child(command.track).get_children().filter(
