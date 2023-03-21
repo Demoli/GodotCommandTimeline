@@ -10,9 +10,10 @@ func _ready():
 	
 	new = move_right_com.instantiate()
 	new.move_target = $Player
-	new.time = 1.5
+	new.time = 1.0
 	$Timeline.add_command(new)
 	
-#	new = command.instantiate()
-#	new.time = 3
-#	$Timeline.add_command(new)
+	new = move_right_com.instantiate()
+	new.time = 3
+	new.track = 1
+	$Timeline.add_command(new)

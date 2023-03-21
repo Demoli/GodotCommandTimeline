@@ -14,6 +14,9 @@ extends Area2D
 
 @export var draggable := false
 
+## The timeline track index to add the command to
+@export var track := 0
+
 var placeholder_area: Area2D
 
 func _ready():
@@ -45,7 +48,7 @@ func place_command(area: Area2D):
 	get_parent().remove_child(self)
 	
 	time = area.time_position
-	var timeline: Timeline = area.get_parent()
+	var timeline: Timeline = area.get_node("../../../")
 	timeline.add_command(self)
 	draggable = false
 	

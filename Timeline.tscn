@@ -18,6 +18,13 @@ position = Vector2(576, 50)
 shape = SubResource("RectangleShape2D_bca6i")
 disabled = true
 
+[node name="Tracks" type="Node2D" parent="."]
+
+[node name="Track1" type="Node2D" parent="Tracks"]
+
+[node name="Track2" type="Node2D" parent="Tracks"]
+position = Vector2(0, 50)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]

@@ -17,6 +17,18 @@ enum CommandAlign{LEFT,RIGHT,CENTER}
 
 @export var playing: bool = false
 
+class Track:
+	var _name: String
+	var _icon: Texture2D
+
+	func _init(name, icon):
+		_name = name
+		_icon = icon
+
+@export var tracks: Array = [
+	Track.new("player", PlaceholderTexture2D.new())
+]
+
 @export var commands: Array = []
 
 ## How many commands can be executed in 1 tick.[br]
@@ -43,6 +55,7 @@ func _ready():
 	progress_bar.value = 0
 	progress_bar.max_value = max_time
 	
+#	_draw_tracks()
 	_init_placeholders()
 
 func _unhandled_key_input(event):
@@ -90,17 +103,20 @@ func get_running_time():
 	
 	return time_elapsed
 
+func add_track(track):
+	tracks.append(track)
+
 func add_command(command: Command):
 	commands.append(command)
-	command.position = get_command_snap_position(command)
-	add_child(command)
+	var place = get_command_placeholder(command)
+	command.position = place.position
+	place.get_parent().add_child(command)
 	
-func get_command_snap_position(command: Command):
-	return get_tree().get_nodes_in_group("command_placeholder").filter(
-		func(place: CommandPlaceholder):
+func get_command_placeholder(command: Command):
+	return $Tracks.get_child(command.track).get_children().filter(
+		func(place):
 			return place.time_position == command.time
-	).pop_front().position
-	
+	).pop_front()
 
 func _init_placeholders():
 	var width = $CollisionShape2D.shape.get_rect().size.x
@@ -109,9 +125,20 @@ func _init_placeholders():
 	
 	var start = 0 if allow_command_at_zero else 1
 	
-	for time in range(start, (max_time / command_step) + 1):
-		var command_pos = Vector2((x_per_tick * time) * command_offset, 25)
-		var new_place = placeholder.instantiate()
-		new_place.position = command_pos
-		new_place.time_position = (time * command_step)
-		add_child(new_place)
+	for track in $Tracks.get_children():
+		for time in range(start, (max_time / command_step) + 1):
+			var command_pos = Vector2((x_per_tick * time) * command_offset, 25)
+			var new_place = placeholder.instantiate()
+			new_place.position = command_pos
+			new_place.time_position = (time * command_step)
+			track.add_child(new_place)
+
+func _draw_tracks():
+	return
+	var y = 0
+	for t in tracks:
+		var new = Area2D.new()
+		new.name = "Track"
+		new.position = Vector2(0, y)
+		$Tracks.add_child(new)
+		y += 50
