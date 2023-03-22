@@ -19,10 +19,12 @@ extends Area2D
 
 var placeholder_area: Area2D
 
+var mouse_over := false
+
 func _ready():
 	add_to_group("timeline_command")
-#	connect("area_entered", Callable(self, "_on_area_2d_area_entered"))
-#	connect("area_exited", Callable(self, "_on_area_2d_area_exited"))
+	connect("mouse_entered", Callable(func(): mouse_over = true))
+	connect("mouse_exited", Callable(func(): mouse_over = false))
 
 func run(_args: Array = []):
 	pass
@@ -33,21 +35,15 @@ func reset():
 func _input(event):
 	if draggable and event.is_action_released("drop_command"):
 		queue_free()
-	if draggable and event.is_action_released("place_command"):
+	if draggable and event.is_action_released("pick_place_command"):
 		var place = _get_overlapping_palceholder()
 		if place:
 			track = place.track
 			place_command(place)
-
-#func _on_area_2d_area_entered(area):
-#	if area is CommandPlaceholder:
-#		placeholder_area = area
-#		print("Entered: %s " % area.name)
-#
-#func _on_area_2d_area_exited(area):
-#	if area is CommandPlaceholder:
-#		placeholder_area = null
-#		print("Left: %s " % area.name)
+	elif not draggable and mouse_over and event.is_action_released("pick_place_command"):
+		var timeline: Timeline = get_node("../../../")
+		timeline.remove_command(self)
+		draggable = true
 
 func place_command(area: Area2D):
 	get_parent().remove_child(self)
@@ -69,3 +65,9 @@ func _get_overlapping_palceholder():
 		if area is CommandPlaceholder:
 			return area
 	return null
+
+func _on_mouse_entered():
+	mouse_over = true
+
+func _on_mouse_exited():
+	mouse_over = false

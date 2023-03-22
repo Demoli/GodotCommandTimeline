@@ -27,7 +27,7 @@ signal command_added
 
 @export var placeholder: PackedScene
 
-@onready var progress_bar = get_node("CanvasLayer/MarginContainer/ProgressBar")
+@onready var progress_bar = $CanvasLayer/MarginContainer/ProgressBar
 
 var commands: Array = []
 var tick: float = 0.0
@@ -97,7 +97,11 @@ func add_command(command: Command):
 	place.get_parent().add_child(command)
 	
 	emit_signal("command_added", command)
-	
+
+func remove_command(command: Command):
+	commands.erase(command)
+			
+
 func get_command_placeholder(command: Command):
 	return $Tracks.get_child(command.track).get_children().filter(
 		func(place):

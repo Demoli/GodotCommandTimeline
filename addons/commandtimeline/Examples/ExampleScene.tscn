@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d3x5h78mho7tx"]
 
 [ext_resource type="Script" path="res://addons/commandtimeline/Examples/ExampleScene.gd" id="1_5x7ul"]
-[ext_resource type="PackedScene" path="res://addons/commandtimeline/Examples/ExampleTimeline.tscn" id="2_uainb"]
+[ext_resource type="PackedScene" uid="uid://dtvu5mxw6o7ll" path="res://addons/commandtimeline/Examples/ExampleTimeline.tscn" id="2_uainb"]
 [ext_resource type="PackedScene" uid="uid://c6h46qfq2u2dt" path="res://addons/commandtimeline/Examples/Player.tscn" id="3_g3vjm"]
 [ext_resource type="PackedScene" uid="uid://cr5crofnfrecv" path="res://addons/commandtimeline/Examples/ExampleCommandPalette.tscn" id="6_plo3f"]
 [ext_resource type="PackedScene" uid="uid://drgkf8xq2k8c1" path="res://addons/commandtimeline/Examples/ExampleCommandPlaceholder.tscn" id="8_46pd4"]
