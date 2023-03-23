@@ -13,7 +13,7 @@ signal command_added
 @export var tick_speed: float = 1
 
 # Total tick time in seconds
-@export var max_time: float = 12.00
+@export var max_time: float = 10
 
 @export var playing: bool = false
 		
@@ -23,7 +23,7 @@ signal command_added
 @export var command_step: float = .5
 
 ## If true you can place a command at zero seconds, then the rest willow follow the command step
-@export var allow_command_at_zero := true
+@export var allow_command_at_zero := false
 
 @export var placeholder: PackedScene
 
