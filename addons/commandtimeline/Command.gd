@@ -17,6 +17,8 @@ extends Area2D
 ## The timeline track index to add the command to (0 indexed)
 @export var track := 0
 
+@onready var timeline = get_tree().get_first_node_in_group("timeline")
+
 var placeholder_area: Area2D
 
 var mouse_over := false
@@ -41,7 +43,6 @@ func _input(event):
 			track = place.track
 			place_command(place)
 	elif not draggable and mouse_over and event.is_action_released("pick_place_command"):
-		var timeline: Timeline = get_node("../../../")
 		timeline.remove_command(self)
 		draggable = true
 
@@ -49,7 +50,6 @@ func place_command(area: Area2D):
 	get_parent().remove_child(self)
 	
 	time = area.time_position
-	var timeline: Timeline = area.get_node("../../../")
 	timeline.add_command(self)
 	draggable = false
 	

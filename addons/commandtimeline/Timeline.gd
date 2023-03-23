@@ -39,10 +39,10 @@ func _get_configuration_warnings():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("timeline")
 	progress_bar.value = 0
 	progress_bar.max_value = max_time
 	
-#	_draw_tracks()
 	_init_placeholders()
 
 func _unhandled_key_input(event):
