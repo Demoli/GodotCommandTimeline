@@ -41,7 +41,6 @@ func _ready():
 	add_to_group("timeline")
 	progress_bar.value = 0
 	progress_bar.max_value = commands_per_track * abs(command_step)
-	print(progress_bar.max_value)
 	
 	_init_placeholders()
 
