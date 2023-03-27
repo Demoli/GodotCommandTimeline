@@ -22,19 +22,13 @@ signal command_added
 
 @export var track_index := 0
 
-@onready var progress_bar = $CanvasLayer/MarginContainer/ProgressBar
-
 var commands: Array = []
 var tick: float = 0.0
 var time_start: float
 
 func _ready():
 	add_to_group("track")
-#	progress_bar.value = 0
-#	progress_bar.max_value = commands_per_track * abs(command_step)
-	
 	_init_placeholders()	
-#	move_child(progress_bar, get_child_count())
 
 func _get_configuration_warnings():
 	if not placeholder:
@@ -53,8 +47,6 @@ func _unhandled_key_input(event):
 func _process(delta):
 	if playing:
 		tick += tick_speed * delta
-		progress_bar.value = tick
-		
 		_process_commands()
 
 func _process_commands():
@@ -78,7 +70,6 @@ func pause():
 	
 func stop():
 	pause()
-#	progress_bar.value = 0
 	tick = 0
 	
 func get_running_time():
